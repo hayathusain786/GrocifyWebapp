@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap");
+
+
+@import "tailwindcss";
+
+
+@theme {
+
+   /* primary ==>> Main buttons, highlights */
+  /* Secondary ==>> Subtle green areas */
+
+  /* first combination */
+/* 
+--color-primary: #4caf50;
+  --color-secondary: #81c784;  */
+  
+  
+  /* second combination */
+  
+   /* --color-primary: #BE7A25;  
+   --color-secondary: #D89B4D;  */
+  
+  /* third combination  */
+/*   
+    --color-primary: #A61B1B;
+  --color-secondary: #CB4F4F; */
+
+  /* fourth combination */
+
+  --color-primary: #bf4080;
+   --color-secondary: #cc6699;
+
+ 
+
+  --color-accent: #ffc107; /* Call-to-action (add to cart) */
+  --color-bg-light: #f9fafb; /* Page background */
+  --color-text-dark: #1f2937; /* Main text */
+  --color-text-grey: #5a5a5e; /* Subtitles */
+  --color-card: #f4f4f9;
+}
+
+body {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  overflow-x: hidden !important;
+}
+
+/* Custom button class  */
+button {
+  @apply cursor-pointer;
+}
+.btn-primary {
+  @apply bg-gradient-to-b from-secondary to-primary px-3 py-1 rounded text-white cursor-pointer hover:bg-gradient-to-b hover:from-primary hover:to-secondary hover:scale-[101%] transition-all duration-300;
+}
