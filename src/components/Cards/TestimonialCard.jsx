@@ -1,7 +1,8 @@
 import React from 'react'
+import { FaStar } from 'react-icons/fa'
 
 
-const TestimonialCard = ({profile,name,profession,review}) => {
+const TestimonialCard = ({profile,name,profession,review,rating}) => {
   return (
     <div className='bg-card rounded-lg'>
         {/* customer info  */}
@@ -15,7 +16,11 @@ const TestimonialCard = ({profile,name,profession,review}) => {
             <div>
                 <h1 className='text-lg font-semibold'>{name}</h1>
                 <p className='text-[14px] text-text-grey'>{profession}</p>
-                <span></span>
+                <span className='flex text-accent'>
+                    {Array.from({length:rating},(_,index)=>(
+                        <FaStar key={index}/>
+                    ))}
+                </span>
             </div>
         </div>
         {/* review  */}

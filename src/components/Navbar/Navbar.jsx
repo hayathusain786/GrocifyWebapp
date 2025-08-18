@@ -3,6 +3,7 @@ import { GoHeartFill } from "react-icons/go";
 import { HiShoppingBag } from "react-icons/hi2";
 import { FaSearch } from "react-icons/fa";
 import { TbMenu2,TbMenu3 } from "react-icons/tb";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
 
@@ -28,11 +29,11 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Menu */}
-        <ul className="lg:flex gap-x-8 font-medium text-[14px] tracking-wider text-zinc-800 hidden">
+        <ul className="lg:flex gap-x-8 font-medium text-[14px] tracking-wider hidden">
           <li>
-            <a href="#" className="text-primary">
+            <NavLink to="/" className={({isActive})=>`${isActive?'text-secondary':''}`}>
               Home
-            </a>
+            </NavLink>
           </li>
           <li>
             <a href="" className="hover:text-primary">
@@ -84,7 +85,7 @@ const Navbar = () => {
 
         </div>
         {/* Mobile Menu */}
-        <ul className={`lg:hidden flex flex-col items-center space-y-6 absolute top-30 transform -translate-x-1/2 bg-secondary/30 backdrop-blur-xl rounded-md font-semibold tracking-wider text-text-grey px-10 py-12 transition-all duration-500 ${showMenu ? 'left-1/2' : '-left-full'} `}>
+        <ul className={`lg:hidden flex flex-col items-center space-y-6 absolute top-30 transform -translate-x-1/2 bg-secondary/100 backdrop-blur-2xl rounded-md font-semibold tracking-wider px-10 py-12 transition-all duration-500 ${showMenu ? 'left-1/2' : '-left-full'} `}>
           <li>
             <a href="#" className="text-primary">
               Home

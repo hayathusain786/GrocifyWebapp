@@ -21,6 +21,7 @@ const Testimonial = () => {
       profession: "Food Blogger",
       review:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo, ut doloribus! Provident optio dolores dignissimos aspernatur, quas, adipisci ad temporibus dicta sapiente ratione voluptatibus necessitatibus..",
+        rating:3,
     },
     {
       id: 2,
@@ -29,6 +30,7 @@ const Testimonial = () => {
       profession: "Model",
       review:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo, ut doloribus! Provident optio dolores dignissimos aspernatur, quas, adipisci ad temporibus dicta sapiente ratione voluptatibus necessitatibus..",
+        rating:2,
     },
     {
       id: 3,
@@ -37,6 +39,7 @@ const Testimonial = () => {
       profession: "Singer",
       review:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo, ut doloribus! Provident optio dolores dignissimos aspernatur, quas, adipisci ad temporibus dicta sapiente ratione voluptatibus necessitatibus..",
+        rating:4,
     },
     {
       id: 4,
@@ -45,6 +48,7 @@ const Testimonial = () => {
       profession: "Fashion Designer",
       review:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo, ut doloribus! Provident optio dolores dignissimos aspernatur, quas, adipisci ad temporibus dicta sapiente ratione voluptatibus necessitatibus..",
+        rating:5,
     },
   ];
 
@@ -80,7 +84,7 @@ const Testimonial = () => {
           >
             {customerReviews.map((review) => (
               <SwiperSlide key={review.id}>
-                <TestimonialCard {...review} />
+                <TestimonialCard {...review} key={review.id} />
               </SwiperSlide>
             ))}
           </Swiper>

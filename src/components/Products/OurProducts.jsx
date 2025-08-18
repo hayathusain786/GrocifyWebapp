@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Heading from "../Heading/Heading";
 import { FaHeart, FaPlusSquare } from "react-icons/fa";
 import ProductCard from "../ProductCard/ProductCard";
 import {ProductList,Categories} from "./ProductList";
+import { Link } from "react-router-dom";
+import { GetProductList } from "../../services/productService";
 
 const OurProducts = () => {
   const [activeTab, setActiveTab] = useState('All');
-  let filteredProducts=activeTab === 'All' ?ProductList : ProductList.filter( product=>product.category===activeTab);
+  const [products,setProducts]=useState([]);
+  
+    useEffect( ()=>{
+       const fetchProducts =async ()=>{
+        const data=await GetProductList();
+        setProducts(data);
+       }
+       fetchProducts();
+    },[] );
+  let filteredProducts=activeTab === 'All' ?products : products.filter( product=>product.categoryName===activeTab);
   
   return (
     <section>
@@ -42,7 +53,7 @@ const OurProducts = () => {
         </div>
         {/* View all button  */}
         <div className="my-10 w-full text-center">
-            <button className="btn-primary">View All</button>
+            <Link to='/Products' className="btn-primary">View All</Link>
         </div>
       </div>
     </section>
