@@ -17,6 +17,16 @@ import { Slide, ToastContainer } from "react-toastify";
 import Unit from "./components/Admin/master/Unit";
 import AddProduct from "./components/Admin/Product/AddProduct";
 import ProductList from "./components/Admin/Product/ProductList";
+import Login from "./components/Admin/Login";
+import RoleProtectedRoute from "./components/RoleProtectedRoute";
+import RequireRole from "./components/RequireRole";
+import UserLogin from "./components/UserLogin";
+import Cart from "./pages/Cart";
+import Discount from "./components/Admin/Product/Discount";
+import Checkout from "./pages/Checkout";
+import MyOrders from "./pages/MyOrders";
+import DemoAdmin from "./pages/DemoAdmin";
+import About from "./pages/About";
 
 function App() {
   const routes = createBrowserRouter(
@@ -25,29 +35,40 @@ function App() {
         {/* User Routes  */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
           <Route path="products" element={<AllProducts />} />
+          <Route path="cart" element={<Cart/>}/>
+          <Route path="check-out" element={<Checkout/>}/>
+          <Route path="my-orders" element={<MyOrders/>}/>
+         
         </Route>
+
+        {/* Login Ruutes */}
+        <Route path="/login" element={<UserLogin/>}/>
+
+        <Route path="/admin/login" element={<Login />} />
+
+         <Route path="demo" element={<DemoAdmin/>}/>
 
         {/* Admin Routes  */}
 
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route path="category" element={<Category />} />
-          <Route path="unit" element={<Unit />} />
-          <Route path="add-product" element={<AddProduct />} />
-          <Route path="product-list" element={<ProductList />} />
+        <Route
+          path="/admin"
+          element={<RoleProtectedRoute allowedRoles={["Admin", "Vendor"]} />}
+        >
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route element={<RequireRole role="Admin" />}>
+              <Route path="category" element={<Category />} />
+              <Route path="unit" element={<Unit />} />
+            </Route>
 
+            <Route path="add-product" element={<AddProduct />} />
+            <Route path="product-list" element={<ProductList />} />
+            <Route path="discount" element={<Discount />} />
+          </Route>
         </Route>
+
       </>
-      // <Route path='/' element={<Layout/>}>
-      //   <Route index element={<Home/>}/>
-      //   <Route path='products' element={<AllProducts/>}/>
-
-      //   {/* Admin Routes */}
-
-      //   <Route path='Admin' element={<AdminLayout/>}>
-
-      //   </Route>
-      // </Route>
     )
   );
 
@@ -56,7 +77,7 @@ function App() {
       <RouterProvider router={routes} />
       <ToastContainer
         position="top-center"
-        autoClose={2000}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick={false}

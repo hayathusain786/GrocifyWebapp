@@ -151,7 +151,7 @@ const Category = () => {
       {/* List section  */}
       <div className="my-10">
         <div className="w-full">
-          <table className="table-responsive">
+          <table className="table-responsive-action">
             <thead>
               <tr className="text-left">
                 <th>Sr.No.</th>
@@ -172,17 +172,17 @@ const Category = () => {
                   </td>
                   <td>
                     <span
-                      className="cursor-pointer text-primary group"
+                      className="text-primary"
                       onClick={() => handleEdit(cat.id)}
                     >
-                      <TiPencil className="group-hover:scale-[105%] group-hover:text-a-dark transition-all duration-300" />
+                      <TiPencil/>
                     </span>
                     |
                     <span
-                      className="cursor-pointer text-red-400 group"
+                      className="text-red-400"
                       onClick={() => handleDelete(cat.id)}
                     >
-                      <TiTrash className="group-hover:scale-[105%] group-hover:text-a-dark transition-all duration-300" />
+                      <TiTrash/>
                     </span>
                   </td>
                 </tr>

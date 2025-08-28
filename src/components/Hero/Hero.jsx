@@ -4,7 +4,7 @@ const Hero = () => {
 
   return (
     <section>
-      <div className="flex md:flex-row flex-col items-center md:pt-20 pt-24 min-h-full">
+      <div className="flex md:flex-row flex-col items-center md:pt-20 pt-2 min-h-full">
         {/* Content section */}
         <div className="flex-1">
           <span className="bg-secondary px-5 py-2 rounded-3xl text-white">

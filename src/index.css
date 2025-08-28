@@ -1,25 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap");
 
-
 @import "tailwindcss";
 
-
 @theme {
-
-   /* primary ==>> Main buttons, highlights */
+  /* primary ==>> Main buttons, highlights */
   /* Secondary ==>> Subtle green areas */
 
   /* first combination */
 
   --color-primary: #4caf50;
-  --color-secondary: #81c784; 
-  
-  
+  --color-secondary: #81c784;
+
   /* second combination */
-  
-   /* --color-primary: #BE7A25;  
+
+  /* --color-primary: #BE7A25;  
    --color-secondary: #D89B4D;  */
-  
+
   /* third combination  */
 
   /*  --color-primary: #A61B1B;
@@ -30,20 +26,15 @@
   /* --color-primary: #bf4080;
    --color-secondary: #cc6699; */
 
- 
-
   --color-accent: #ffc107; /* Call-to-action (add to cart) */
-  --color-accent-light:#ffda6a;
+  --color-accent-light: #ffda6a;
   --color-bg-light: #f9fafb; /* Page background */
   --color-text-dark: #1f2937; /* Main text */
   --color-text-grey: #5a5a5e; /* Subtitles */
   --color-card: #f4f4f9;
 
-  --color-a-dark:#1e293b;
-  --color-a-light:rgba(255, 255, 255, 0.7);
-
-
-
+  --color-a-dark: #1e293b;
+  --color-a-light: rgba(255, 255, 255, 0.7);
 }
 
 body {
@@ -53,8 +44,8 @@ body {
   overflow-x: hidden !important;
 }
 
-.subLink{
-  @apply hover:text-white py-1 px-3 ;
+.subLink {
+  @apply hover:text-white py-1 px-3;
 }
 
 /* Custom button class  */
@@ -64,47 +55,83 @@ button {
 .btn-primary {
   @apply bg-gradient-to-b from-secondary to-primary px-3 py-1 rounded text-white cursor-pointer hover:bg-gradient-to-b hover:from-primary hover:to-secondary hover:scale-[101%] transition-all duration-300;
 }
-.btn-accent{
+.btn-accent {
   @apply bg-gradient-to-b from-accent to-accent-light px-3 py-1 rounded text-white cursor-pointer hover:bg-gradient-to-b hover:from-accent-light hover:to-accent hover:scale-[101%] transition-all duration-300;
 }
-.btn-danger{
+.btn-danger {
   @apply bg-gradient-to-b from-red-500 to-red-400 px-3 py-1 rounded text-white cursor-pointer hover:bg-gradient-to-b hover:from-red-400 hover:to-red-500 hover:scale-[101%] transition-all duration-300;
 }
 
-
-.input-group{
-  @apply w-1/2 my-3 flex flex-col gap-2;
+.input-group {
+  @apply md:w-1/2 my-3 flex flex-col gap-2;
 }
-.form-control{
+.form-control {
   @apply outline-1 border-t-a-dark w-full h-10 rounded p-3;
 }
-.form-control-file{
+.form-control-file {
   @apply outline-1 border-t-a-dark w-full h-14 rounded p-3;
 }
-.form-select{
+.form-select {
   @apply outline-1 border-t-a-dark w-full h-10 rounded px-3;
 }
 
-
-.form-title{
+.form-title {
   @apply font-semibold text-2xl border-b-2 p-3 mb-10;
 }
-.table-responsive{
+.table-responsive,.table-responsive-action {
   @apply w-full border-collapse;
 }
-.table-responsive thead{
+.table-responsive thead,.table-responsive-action thead {
   @apply bg-gray-50 border-b-2 border-gray-200;
 }
-.table-responsive thead th{
+.table-responsive thead th,.table-responsive-action thead th {
   @apply p-3 text-sm font-semibold tracking-wide text-left;
 }
-.table-responsive tbody td{
-  @apply p-3 text-sm text-gray-700;
+.table-responsive tbody td,.table-responsive-action tbody td {
+  @apply p-3 text-sm text-gray-700 border-b-1 border-gray-200;
 }
-.table-responsive tbody td:last-child{
-  @apply text-xl flex gap-3 items-center;
+.table-responsive-action tbody td:last-child {
+  @apply flex gap-2 items-center;
+}
+.table-responsive-action tbody td:last-child span,.table-responsive-action tbody td:last-child a {
+  @apply py-3 text-2xl cursor-pointer hover:scale-[105%] hover:text-a-dark transition-all duration-300;
+}
+
+.custom-scrollbar-2::-webkit-scrollbar {
+  width: 2px;
+}
+.custom-scrollbar-4::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar-6::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar-8::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+.custom-scrollbar-2::-webkit-scrollbar-thumb,.custom-scrollbar-4::-webkit-scrollbar-thumb,.custom-scrollbar-6::-webkit-scrollbar-thumb,.custom-scrollbar-8::-webkit-scrollbar-thumb {
+  @apply bg-gray-400; /* gray-600 */
+  border-radius: 8px;
 }
 
 ::file-selector-button {
   @apply border-1 p-2 rounded bg-accent text-[10px];
+}
+
+@layer utilities {
+  /* autofill styles fix */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #ffffffed inset !important;
+    -webkit-text-fill-color: #6a7282 !important;
+    background-color: transparent !important;
+  }
+
+  .autofill-fix:-webkit-autofill {
+    background-color: transparent !important;
+  }
 }

@@ -124,7 +124,7 @@ const Unit = () => {
       {/* List section  */}
       <div className="my-10">
         <div className="w-full">
-          <table className="table-responsive">
+          <table className="table-responsive-action">
             <thead>
               <tr className="text-left">
                 <th>Sr.No.</th>
@@ -140,12 +140,12 @@ const Unit = () => {
                   <td>{unit.name}</td>
                   <td>{unit.description} </td>
                   <td>
-                    <span className="cursor-pointer text-primary group" onClick={() => handleEdit(unit.id)}>
-                      <TiPencil className="group-hover:scale-[105%] group-hover:text-a-dark transition-all duration-300" />
+                    <span className="text-primary" onClick={() => handleEdit(unit.id)}>
+                      <TiPencil className="" />
                     </span>
                     |
-                    <span className="cursor-pointer text-red-400 group" onClick={()=>handleDelete(unit.id)}>
-                      <TiTrash className="group-hover:scale-[105%] group-hover:text-a-dark transition-all duration-300" />
+                    <span className="text-red-400" onClick={()=>handleDelete(unit.id)}>
+                      <TiTrash />
                     </span>
                   </td>
                 </tr>

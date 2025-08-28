@@ -14,15 +14,19 @@ const AllProducts = () => {
 
   const [showCategory, setShowCategory] = useState(false);
 
-  const [products,setProducts]=useState([]);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-  useEffect( ()=>{
-     const fetchProducts =async ()=>{
-      const data=await GetProductList();
+  const filterCategories = Categories.filter((cate) => cate != "All");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await GetProductList();
       setProducts(data);
-     }
-     fetchProducts();
-  },[] );
+      setFilteredProducts(data);
+    };
+    fetchProducts();
+  }, []);
 
   const handleCategoryChange = (category) => {
     setSelectedCategory((prev) =>
@@ -32,14 +36,32 @@ const AllProducts = () => {
     );
   };
 
-  const filterCategories = Categories.filter((cate) => cate != "All");
-
-  let filterProducts =
-    selectedCategory.length === 0
-      ? products
-      : products.filter((product) =>
+  useEffect(() => {
+    if (selectedCategory.length === 0) {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(
+        products.filter((product) =>
           selectedCategory.includes(product.categoryName)
-        );
+        )
+      );
+    }
+  }, [selectedCategory, products]);
+
+  const sortFilter = (val) => {
+    let sorted = [...filteredProducts]; // copy first!
+
+    // Price Low to High
+    if (val === "LtH") {
+      sorted.sort((a, b) => a.price - b.price);
+    }
+    // Price High to Low 
+    else if (val === "HtL") {
+      sorted.sort((a, b) => b.price - a.price);
+    }
+
+    setFilteredProducts(sorted); // update state
+  };
 
   return (
     <section>
@@ -47,7 +69,7 @@ const AllProducts = () => {
         {/* Banner  */}
         <div className="w-full md:h-52 h-40 bg-[url(../src/assets/images/all-banner.jpg)] bg-center bg-cover">
           <h1 className="bg-text-dark/60 w-full h-full flex items-center justify-center md:text-7xl text-4xl text-white">
-            Products
+            PRODUCTS
           </h1>
         </div>
         {/* content  */}
@@ -75,14 +97,13 @@ const AllProducts = () => {
                       showCategory ? "block" : "hidden"
                     } transition-all duration-300 ease-in-out`}
                   >
-                    {filterCategories.map((cat) => (
-                      <li className="flex gap-2 text-text-grey" key={cat.id}>
+                    {filterCategories.map((cat,index) => (
+                      <li className="flex gap-2 text-text-grey" key={index}>
                         <input
                           type="checkbox"
                           className="cursor-pointer"
                           checked={selectedCategory.includes(cat)}
                           onChange={() => handleCategoryChange(cat)}
-                          key={cat.id}
                         />
                         {cat}
                       </li>
@@ -100,11 +121,31 @@ const AllProducts = () => {
               </ul>
             </div>
           </div>
-          {/* Products List  */}
-          <div className="w-full grid xl:grid-cols-4 xl:gap-6 md:grid-cols-3 md:gap-4 grid-cols-1 gap-3 items-center">
-            {filterProducts.map((product) => (
-              <ProductCard {...product} key={product.id} />
-            ))}
+
+          <div>
+            {/* sort filter section    */}
+
+            <div className="flex justify-end my-3 border-b-1 border-card py-3">
+              <div className="">
+                <select
+                  name=""
+                  id=""
+                  className="border-1 rounded border-gray-500 p-1"
+                  onChange={(e) => sortFilter(e.target.value)}
+                >
+                  <option value="">Sort by</option>
+                  <option value="LtH">Price Low to High</option>
+                  <option value="HtL">Price High to Low</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Products List  */}
+            <div className="w-full grid xl:grid-cols-4 xl:gap-6 md:grid-cols-3 md:gap-4 grid-cols-1 gap-3 items-center">
+              {filteredProducts.map((product) => (
+                <ProductCard {...product} key={product.id} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { AddProducts } from "../../../services/productService";
+import { AddProducts, GetProductById, UpdateProduct } from "../../../services/productService";
 import { toast } from "react-toastify";
 import { GetCategories, GetUnits } from "../../../services/masterService";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const AddProduct = () => {
+  const navigate=useNavigate();
+  const [searchParam] = useSearchParams();
+
+  const entryId = searchParam.get("id");
+
   const data = {
     name: "",
     description: "",
@@ -13,6 +19,7 @@ const AddProduct = () => {
     quantity: "",
     price: "",
     offerPrice: "",
+    imageUrl: "",
   };
 
   const [refetch, setRefetch] = useState(false);
@@ -21,14 +28,25 @@ const AddProduct = () => {
   const [units, setUnits] = useState([]);
 
   useEffect(() => {
+    if (entryId) {
+      const fetchProduct = async () => {
+        const data = await GetProductById(entryId);
+        if (data) {
+          setInputData(data);
+        }
+        //setInputData({...inputData,name:'Hayat Husain'});
+      };
+      fetchProduct();
+    }
+
     const fetchCategories = async () => {
       const data = await GetCategories();
       setCategories(data);
     };
-    const fetchUnits=async ()=>{
-        const data=await GetUnits();
-        setUnits(data);
-    }
+    const fetchUnits = async () => {
+      const data = await GetUnits();
+      setUnits(data);
+    };
     fetchCategories();
     fetchUnits();
   }, [refetch]);
@@ -44,12 +62,30 @@ const AddProduct = () => {
   formData.append("offerPrice", inputData.offerPrice);
 
   const handleSubmit = async () => {
-    const result = await AddProducts(formData);
-    if (result.status == 201) {
-      toast.success("Product Add Successfully");
-    } else {
-      toast.warn("Something went wrong !");
+    try {
+      let result = null;
+      if (entryId) {
+        result=await UpdateProduct(entryId,formData);
+      } else {
+        result = await AddProducts(formData);
+      }
+
+      if (result.status == 201) {
+        toast.success("Product Add Successfully.");
+      }
+      else if(result.status==200){
+        toast.warn('Product Update Successfully.');
+        navigate('/admin/product-list');
+      }
+    } catch (error) {
+      if(error.response && error.response.status==400){
+        toast.error('Something went wrong');
+      }
+      else{
+        toast.error('Something went wrong');
+      }
     }
+
     setRefetch(!refetch);
     setInputData(data);
   };
@@ -90,19 +126,31 @@ const AddProduct = () => {
             }
           />
         </div>
-        <div className="input-group">
-          <label htmlFor="uploadImage">Upload Image</label>
-          <input
-            type="file"
-            name="uploadImage"
-            id="uploadImage"
-            className="form-control-file"
-            autoComplete="off"
-            onChange={(e) =>
-              setInputData({ ...inputData, uploadImage: e.target.files[0] })
-            }
-          />
+        <div className="flex items-center gap-6">
+          <div className="input-group">
+            <label htmlFor="uploadImage">Upload Image</label>
+            <input
+              type="file"
+              name="uploadImage"
+              id="uploadImage"
+              className="form-control-file"
+              autoComplete="off"
+              onChange={(e) =>
+                setInputData({ ...inputData, uploadImage: e.target.files[0] })
+              }
+            />
+          </div>
+
+          <div className="input-group">
+            <label className="text-red-500">Uploaded Image</label>
+            <img
+              src={inputData.imageUrl}
+              alt="Product Image"
+              className="w-16"
+            />
+          </div>
         </div>
+
         <div className="input-group">
           <label htmlFor="categoryId">Category</label>
           <select
@@ -116,10 +164,11 @@ const AddProduct = () => {
             }
           >
             <option value="">--Select Category--</option>
-            {categories.map( (cat)=>(
-                 <option value={cat.id} key={cat.id}>{cat.name}</option>
-            ) )}
-           
+            {categories.map((cat) => (
+              <option value={cat.id} key={cat.id}>
+                {cat.name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="input-group">
@@ -135,9 +184,11 @@ const AddProduct = () => {
             }
           >
             <option value="">--Select Unit--</option>
-           {units.map( (unit)=>(
-                 <option value={unit.id} key={unit.id}>{unit.name}</option>
-            ) )}
+            {units.map((unit) => (
+              <option value={unit.id} key={unit.id}>
+                {unit.name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="input-group">

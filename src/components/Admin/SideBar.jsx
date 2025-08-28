@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const SideBar = ({ sideBarToggle = true }) => {
   const [activeToggle, setActiveToggle] = useState(null);
@@ -28,7 +29,9 @@ const SideBar = ({ sideBarToggle = true }) => {
           </h1>
         </div>
         <ul className="px-3 py-4">
-          <li>
+
+        {Cookies.get("role")=="Admin" && (
+  <li>
             <p
               onClick={() => toggleDropdown("master")}
               className="flex justify-between items-center cursor-pointer border-b-2 px-2 py-3"
@@ -56,6 +59,10 @@ const SideBar = ({ sideBarToggle = true }) => {
               </li>
             </ul>
           </li>
+        )}
+
+        
+          
           <li>
             <p
               onClick={() => toggleDropdown("product")}
@@ -81,6 +88,9 @@ const SideBar = ({ sideBarToggle = true }) => {
               </li>
               <li className="subLink">
                 <Link to='product-list'>Product List</Link>
+              </li>
+              <li className="subLink">
+                <Link to='discount'>Discount</Link>
               </li>
             </ul>
           </li>

@@ -1,17 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { TiPencil, TiTrash } from "react-icons/ti";
-import { GetProductList } from "../../../services/productService";
+import {
+  DeleteProduct,
+  GetMyProductList,
+} from "../../../services/productService";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const data = await GetProductList();
+      const data = await GetMyProductList();
       setProducts(data);
     };
     fetchProducts();
   }, []);
+
+  const handleDelete = async (id) => {
+    const confirmed = confirm("Are you sure to remove this item!");
+    if (!confirmed) return;
+    try {
+      const res = await DeleteProduct(id);
+      if (res.status == 200) {
+        toast.success("Product Delete Successfully.");
+        setProducts(products.filter((product) => product.id != id));
+      }
+    } catch (error) {
+      toast.error("Something went wrong.");
+    }
+  };
 
   return (
     <section>
@@ -20,8 +39,8 @@ const ProductList = () => {
           <h2>Product List</h2>
         </div>
 
-        <div>
-          <table className="table-responsive">
+        <div className="w-full pb-4 overflow-x-scroll custom-scrollbar-2">
+          <table className="table-responsive-action">
             <thead>
               <tr>
                 <th>Name</th>
@@ -53,16 +72,18 @@ const ProductList = () => {
                   <td>{product.offerPrice}</td>
                   <td>{product.quantity}</td>
                   <td>
-                    <span
-                      className="cursor-pointer text-primary group"
+                    <Link
+                      to={`/admin/add-product?id=${product.id}`}
+                      className="text-primary"
                     >
-                      <TiPencil className="group-hover:scale-[105%] group-hover:text-a-dark transition-all duration-300" />
-                    </span>
+                      <TiPencil/>
+                    </Link>
                     |
                     <span
-                      className="cursor-pointer text-red-400 group"
+                      className="text-red-400"
+                      onClick={() => handleDelete(product.id)}
                     >
-                      <TiTrash className="group-hover:scale-[105%] group-hover:text-a-dark transition-all duration-300" />
+                      <TiTrash/>
                     </span>
                   </td>
                 </tr>
