@@ -11,7 +11,7 @@ import Footer from "./components/Admin/Footer";
 import { LiaPercentageSolid } from "react-icons/lia";
 
 const AdminLayout = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [activeToggle, setActiveToggle] = useState(null);
   const [filterSideBarLink, setFilterSidebarLink] = useState([]);
 
@@ -23,7 +23,7 @@ const AdminLayout = () => {
     {
       allowedUser: ["Admin"],
       title: "Master",
-      icon: <CgWebsite/>,
+      icon: <CgWebsite />,
       links: [
         { name: "Category", path: "/admin/category" },
         { name: "Unit", path: "/admin/unit" },
@@ -32,7 +32,7 @@ const AdminLayout = () => {
     {
       allowedUser: ["Admin", "Vendor"],
       title: "Product",
-      icon: <AiOutlineProduct/>,
+      icon: <AiOutlineProduct />,
       links: [
         { name: "Add Product", path: "/admin/add-product" },
         { name: "Product List", path: "/admin/product-list" },
@@ -42,9 +42,7 @@ const AdminLayout = () => {
       allowedUser: ["Admin", "Vendor"],
       title: "Discount",
       icon: <LiaPercentageSolid />,
-      links: [
-        { name: "Discount", path: "/admin/discount" },
-      ],
+      links: [{ name: "Discount", path: "/admin/discount" }],
     },
   ];
 
@@ -74,7 +72,7 @@ const AdminLayout = () => {
         <div className="flex items-center gap-5 text-gray-500">
           <p>Hi! {Cookies.get("userName")}</p>
           <button
-            className="border rounded-full text-sm px-4 py-1 text-white bg-gradient-to-b from-accent to-accent-light hover:bg-gradient-to-b hover:from-accent-light hover:to-accent" 
+            className="border rounded-full text-sm px-4 py-1 text-white bg-gradient-to-b from-accent to-accent-light hover:bg-gradient-to-b hover:from-accent-light hover:to-accent"
             onClick={handleLogout}
           >
             Logout
@@ -85,7 +83,7 @@ const AdminLayout = () => {
       <div className="flex gap-3">
         <div className="md:w-64 h-screen w-16 border-r text-base border-gray-300 pt-4 flex flex-col transition-all duration-300">
           <ul>
-            {filterSideBarLink.map((link,i) => (
+            {filterSideBarLink.map((link, i) => (
               <li key={i}>
                 <p
                   className="flex items-center py-3 px-4 gap-3 cursor-pointer hover:bg-gray-100/90 border-white text-gray-700"
@@ -102,10 +100,15 @@ const AdminLayout = () => {
                     activeToggle == link.title ? "block" : "hidden"
                   } pl-10 text-sm text-gray-500 flex flex-col gap-2`}
                 >
-                  {link.links.map((subLink,j) => (
+                  {link.links.map((subLink, j) => (
                     <li key={j}>
-                      <Link to={subLink.path} className="flex items-center gap-2 hover:text-secondary">
-                      <span><IoChevronForwardCircleOutline/></span>
+                      <Link
+                        to={subLink.path}
+                        className="flex items-center gap-2 hover:text-secondary"
+                      >
+                        <span>
+                          <IoChevronForwardCircleOutline />
+                        </span>
                         <span>{subLink.name}</span>
                       </Link>
                     </li>
@@ -121,7 +124,7 @@ const AdminLayout = () => {
       </div>
 
       <footer>
-        <Footer/>
+        <Footer />
       </footer>
     </>
   );
