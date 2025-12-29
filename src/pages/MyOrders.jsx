@@ -54,8 +54,10 @@ const MyOrders = () => {
                         {order.orderId}
                       </span>{" "}
                     </td>
-                    <td className="w-1/2 whitespace-pre-line">
-                      {order.fullAddress}
+                    <td className="flex flex-col">
+                    <span className="font-semibold text-[1rem]">{order.fullName}</span>
+                    <span className=" whitespace-pre-line">{order.fullAddress}</span>
+                      
                     </td>
                     <td>{new Date(order.orderDate).toLocaleDateString()}</td>
                     <td>{order.status}</td>

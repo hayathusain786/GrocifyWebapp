@@ -27,8 +27,11 @@ import Checkout from "./pages/Checkout";
 import MyOrders from "./pages/MyOrders";
 import DemoAdmin from "./pages/DemoAdmin";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
+  
+
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -36,19 +39,19 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="products" element={<AllProducts />} />
-          <Route path="cart" element={<Cart/>}/>
-          <Route path="check-out" element={<Checkout/>}/>
-          <Route path="my-orders" element={<MyOrders/>}/>
-         
+          <Route path="cart" element={<Cart />} />
+          <Route path="check-out" element={<Checkout />} />
+          <Route path="my-orders" element={<MyOrders />} />
         </Route>
 
         {/* Login Ruutes */}
-        <Route path="/login" element={<UserLogin/>}/>
+        <Route path="/login" element={<UserLogin />} />
 
         <Route path="/admin/login" element={<Login />} />
 
-         <Route path="demo" element={<DemoAdmin/>}/>
+        <Route path="demo" element={<DemoAdmin />} />
 
         {/* Admin Routes  */}
 
@@ -67,7 +70,6 @@ function App() {
             <Route path="discount" element={<Discount />} />
           </Route>
         </Route>
-
       </>
     )
   );

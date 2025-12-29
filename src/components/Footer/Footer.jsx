@@ -1,5 +1,6 @@
 import React from "react";
 import { IoArrowRedoSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -30,7 +31,7 @@ const Footer = () => {
           <div>
             <ul className="flex flex-col gap-3 text-text-grey text-[14px]">
               <li className="hover:text-secondary">
-                <a href="#">About</a>
+                <Link to='/about'>About</Link>
               </li>
               <li className="hover:text-secondary">
                 <a href="#">FAQ's</a>
@@ -52,7 +53,7 @@ const Footer = () => {
                 <a href="#">Feedback</a>
               </li>
               <li className="hover:text-secondary">
-                <a href="#">Contact us</a>
+                <Link to='/contact'>Contact Us</Link>
               </li>
             </ul>
           </div>

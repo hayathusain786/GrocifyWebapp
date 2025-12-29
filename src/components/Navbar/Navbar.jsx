@@ -80,9 +80,14 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <a href="#" className="hover:text-primary">
-              Contact us
-            </a>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `${isActive ? "text-secondary" : ""}`
+              }
+            >
+              Contact Us
+            </NavLink>
           </li>
         </ul>
 
@@ -115,7 +120,11 @@ const Navbar = () => {
                 <Link to="/login" className="btn-accent">
                   Login
                 </Link>
+                  <Link to="/admin/login" className="btn-accent">
+                  Admin Login
+                </Link>
               </div>
+              
             )}
             {Cookies.get("role") && (
               <div>
@@ -198,9 +207,14 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <a href="#" className="hover:text-primary">
-              Contact us
-            </a>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `${isActive ? "text-secondary" : ""}`
+              }
+            >
+              Contact Us
+            </NavLink>
           </li>
           {/* Search box */}
           <li className="flex items-center border-2 border-primary rounded-3xl px-4 py-1">

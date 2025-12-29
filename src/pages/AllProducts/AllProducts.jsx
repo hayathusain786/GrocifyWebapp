@@ -26,6 +26,8 @@ const AllProducts = () => {
       setFilteredProducts(data);
     };
     fetchProducts();
+    //  Scroll to top
+  window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const handleCategoryChange = (category) => {

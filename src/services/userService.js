@@ -12,3 +12,8 @@ export const AddShippingAddress = async (data) => {
   const res = await axios.post(`${API_BASE}/api/User/AddShippingAddress`, data);
   return res;
 };
+
+export const SendFeedback = async (data) => {
+  const res = await axios.post(`${API_BASE}/api/User/SendFeedback`, data);
+  return res;
+};

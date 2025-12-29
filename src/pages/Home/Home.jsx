@@ -11,21 +11,15 @@ import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   return (
-    <>
-      <Navbar />
-      
-      <section className="lg:px-16 md:px-8 px-4">
-        <Hero />
-        <Category />
-        <OurValues />
-        <OurProducts />
-        <Discount />
-        <Process />
-        <Testimonial />
-      </section>
-
-      <Footer />
-    </>
+    <section className="lg:px-16 md:px-8 px-4">
+      <Hero />
+      <Category />
+      <OurValues />
+      <OurProducts />
+      <Discount />
+      <Process />
+      <Testimonial />
+    </section>
   );
 };
 
