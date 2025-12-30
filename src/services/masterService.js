@@ -1,12 +1,12 @@
-import axios from "axios";
-
+//import axios from "axios";
+import api from "./axiosInstance";
 //axios.defaults.withCredentials=true;
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
-const token=localStorage.getItem("token");
+//const token = localStorage.getItem("token");
 
 export const GetCategories = async () => {
-  const res = await axios.get(`${API_BASE}/api/Master/GetCategories`);
+  const res = await api.get("/api/Master/GetCategories");
 
   const categories = res.data.map((cat) => ({
     ...cat,
@@ -16,43 +16,38 @@ export const GetCategories = async () => {
 };
 
 export const AddCategory = async (data) => {
-  const res = await axios.post(`${API_BASE}/api/Master/AddCategory`, data,{headers:{
-    Authorization:`Bearer ${token}`
-  }});
+  const res = await api.post("/api/Master/AddCategory", data);
   return res;
 };
 
 export const UpdateCategory = async (id, data) => {
-  const res = await axios.put(
-    `${API_BASE}/api/Master/UpdateCategory/${id}`,
-    data
-  );
+  const res = await api.put(`/api/Master/UpdateCategory/${id}`, data);
   return res;
 };
 
-export const DeleteCategory=async (id)=>{
-    const res=await axios.patch(`${API_BASE}/api/Master/DeleteCategory/${id}`);
-    return res;
-}
+export const DeleteCategory = async (id) => {
+  const res = await api.patch(`/api/Master/DeleteCategory/${id}`);
+  return res;
+};
 
 // Unit Master APIs
 
 export const GetUnits = async () => {
-  const res = await axios.get(`${API_BASE}/api/Master/GetUnits`);
+  const res = await api.get("/api/Master/GetUnits");
   return res.data;
 };
 
 export const AddUnit = async (data) => {
-    const res=await axios.post(`${API_BASE}/api/Master/AddUnit`,data);
-    return res;
+  const res = await api.post("/api/Master/AddUnit", data);
+  return res;
 };
 
-export const UpdateUnit=async (id,data)=>{
-    const res=await axios.put(`${API_BASE}/api/Master/UpdateUnit/${id}`,data);
-    return res;
-}
+export const UpdateUnit = async (id, data) => {
+  const res = await api.put(`/api/Master/UpdateUnit/${id}`, data);
+  return res;
+};
 
-export const DeleteUnit =async (id)=>{
-    const res=await axios.patch(`${API_BASE}/api/Master/DeleteUnit/${id}`);
-    return res;
-}
+export const DeleteUnit = async (id) => {
+  const res = await api.patch(`/api/Master/DeleteUnit/${id}`);
+  return res;
+};
