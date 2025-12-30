@@ -7,6 +7,11 @@ import { Navigation } from "swiper/modules";
 import TestimonialCard from "../Cards/TestimonialCard";
 import Heading from "../Heading/Heading";
 
+import customer1 from "../../assets/images/customer1.jpg";
+import customer2 from "../../assets/images/customer2.jpg";
+import customer3 from "../../assets/images/customer3.jpg";
+import customer4 from "../../assets/images/customer4.jpg";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -16,7 +21,7 @@ const Testimonial = () => {
   const customerReviews = [
     {
       id: 1,
-      profile: "../src/assets/images/customer4.jpg",
+      profile:customer4,
       name: "Jhon Snow",
       profession: "Food Blogger",
       review:
@@ -25,7 +30,7 @@ const Testimonial = () => {
     },
     {
       id: 2,
-      profile: "../src/assets/images/customer3.jpg",
+      profile:customer3,
       name: "Arya Stark",
       profession: "Model",
       review:
@@ -34,7 +39,7 @@ const Testimonial = () => {
     },
     {
       id: 3,
-      profile: "../src/assets/images/customer2.jpg",
+      profile:customer2,
       name: "Paul Gause",
       profession: "Singer",
       review:
@@ -43,7 +48,7 @@ const Testimonial = () => {
     },
     {
       id: 4,
-      profile: "../src/assets/images/customer1.jpg",
+      profile:customer1,
       name: "Sansa Stark",
       profession: "Fashion Designer",
       review:

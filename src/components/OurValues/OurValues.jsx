@@ -4,6 +4,7 @@ import { FaHeart, FaLeaf } from "react-icons/fa";
 import { FaShield } from "react-icons/fa6";
 import ValueCard from "../ValueCard/ValueCard";
 import { GiFruitBowl } from "react-icons/gi";
+import fullBasket from "../../assets/images/basket-full-vegetables.png";
 
 const OurValues = () => {
   const ourValuesList = [
@@ -56,7 +57,7 @@ const OurValues = () => {
           {/* image section */}
           <div>
             <img
-              src="../src/assets/images/basket-full-vegetables.png"
+              src={fullBasket}
               alt="Values"
               className="hidden md:block"
             />

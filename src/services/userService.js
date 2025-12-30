@@ -1,19 +1,16 @@
-import axios from "axios";
-axios.defaults.withCredentials = true;
-
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
+import api from "./axiosInstance";
 
 export const GetShippingAddress = async () => {
-  const res = await axios.get(`${API_BASE}/api/User/GetShippingAddress`);
+  const res = await api.get("/api/User/GetShippingAddress");
   return res.data;
 };
 
 export const AddShippingAddress = async (data) => {
-  const res = await axios.post(`${API_BASE}/api/User/AddShippingAddress`, data);
+  const res = await api.post("/api/User/AddShippingAddress", data);
   return res;
 };
 
 export const SendFeedback = async (data) => {
-  const res = await axios.post(`${API_BASE}/api/User/SendFeedback`, data);
+  const res = await api.post("/api/User/SendFeedback", data);
   return res;
 };
