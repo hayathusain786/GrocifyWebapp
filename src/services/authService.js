@@ -1,18 +1,20 @@
-import axios from "axios";
+//import axios from "axios";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
+import api from "./axiosInstance";
+
+//const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 export const adminlogin = async (data) => {
-  const res = await axios.post(`${API_BASE}/api/Auth/AdminLogin`, data,{withCredentials:true});
+  const res = await api.post("/api/Auth/AdminLogin", data);
 
   return res;
 };
 export const userlogin = async (data) => {
-  const res = await axios.post(`${API_BASE}/api/Auth/UserLogin`, data,{withCredentials:true});
+  const res = await api.post("/api/Auth/UserLogin", data);
 
   return res;
 };
 export const logout = async () => {
-  const res = await axios.post(`${API_BASE}/api/Auth/Logout`);
+  const res = await api.post("/api/Auth/Logout");
   return res;
 };
