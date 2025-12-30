@@ -22,6 +22,7 @@ const Login = () => {
       const result = await adminlogin(inputData);
       if (result.status == 200) {
         toast.success("Login Successfully..");
+        localStorage.setItem("token",result.data);
         const token = jwtDecode(result.data);
         const userRole =
           token["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];

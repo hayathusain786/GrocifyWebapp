@@ -3,6 +3,8 @@ import axios from "axios";
 axios.defaults.withCredentials=true;
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
+const token=localStorage.getItem("token");
+
 export const GetCategories = async () => {
   const res = await axios.get(`${API_BASE}/api/Master/GetCategories`);
 
@@ -14,7 +16,9 @@ export const GetCategories = async () => {
 };
 
 export const AddCategory = async (data) => {
-  const res = await axios.post(`${API_BASE}/api/Master/AddCategory`, data);
+  const res = await axios.post(`${API_BASE}/api/Master/AddCategory`, data,{headers:{
+    Authorization:`Bearer ${token}`
+  }});
   return res;
 };
 
