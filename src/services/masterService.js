@@ -1,7 +1,7 @@
 //import axios from "axios";
 import api from "./axiosInstance";
 //axios.defaults.withCredentials=true;
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
+//const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 //const token = localStorage.getItem("token");
 
@@ -10,7 +10,7 @@ export const GetCategories = async () => {
 
   const categories = res.data.map((cat) => ({
     ...cat,
-    imageUrl: `${API_BASE}/${cat.imageUrl?.replace(/^\/+/, "")}`,
+    imageUrl: cat.imageUrl,
   }));
   return categories;
 };

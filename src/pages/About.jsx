@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router-dom";
+import bannerImg from "../assets/images/banner-img.png"
 
 const About = () => {
   useEffect(() => {
@@ -47,7 +48,7 @@ const About = () => {
           </div>
           {/* Image  */}
           <div className="flex items-center">
-            <img src="../src/assets/images/banner-img.png" alt="Banner" />
+            <img src={bannerImg} alt="Banner" />
           </div>
         </div>
 

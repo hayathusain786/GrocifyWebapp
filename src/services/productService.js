@@ -1,6 +1,6 @@
 import api from "./axiosInstance";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
+//const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 export const AddProducts = async (data) => {
   const res = await api.post("/api/Product/AddProduct", data);
@@ -11,7 +11,7 @@ export const GetProductList = async () => {
   const res = await api.get("/api/Product/GetProducts");
   const produtcs = res.data.map((product) => ({
     ...product,
-    imageUrl: `${API_BASE}/${product.imageUrl?.replace(/^\/+/, "")}`,
+    imageUrl:product.imageUrl,
   }));
   return produtcs;
 };
@@ -20,7 +20,7 @@ export const GetMyProductList = async () => {
   const res = await api.get("/api/Product/GetMyProducts");
   const produtcs = res.data.map((product) => ({
     ...product,
-    imageUrl: `${API_BASE}/${product.imageUrl?.replace(/^\/+/, "")}`,
+    imageUrl: product.imageUrl,
   }));
   return produtcs;
 };
@@ -29,7 +29,7 @@ export const GetProductById = async (id) => {
   const res = await api.get(`/api/Product/GetProductById?id=${id}`);
   const product = {
     ...res.data,
-    imageUrl: `${API_BASE}/${res.data.imageUrl?.replace(/^\/+/, "")}`,
+    imageUrl:res.data.imageUrl,
   };
   return product;
 };

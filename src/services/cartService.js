@@ -1,11 +1,11 @@
 import api from "./axiosInstance";
 
-const API_BASE=import.meta.env.VITE_API_BASE_URL;
+//const API_BASE=import.meta.env.VITE_API_BASE_URL;
 
 export const getCart=async()=>{
     const res=await api.get("/api/Cart/GetCart");
     const cartItems=res.data.map( (item)=>({
-        ...item,total:item.quantity*item.price,productImage:`${API_BASE}/${item.productImage?.replace(/^\/+/, "")}`
+        ...item,total:item.quantity*item.price,productImage:item.productImage
     }));
     return cartItems;
 }

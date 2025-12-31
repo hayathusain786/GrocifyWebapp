@@ -120,9 +120,9 @@ const Navbar = () => {
                 <Link to="/login" className="btn-accent">
                   Login
                 </Link>
-                  <Link to="/admin/login" className="btn-accent">
+                  {/* <Link to="/admin/login" className="btn-accent">
                   Admin Login
-                </Link>
+                </Link> */}
               </div>
               
             )}
